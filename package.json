@@ -16,6 +16,11 @@
     "pretest": "node_modules/.bin/xo",
     "test": "node_modules/.bin/mocha --compilers coffee:coffee-script/register"
   },
+  "xo": {
+    "rules": {
+      "no-nested-ternary": 0
+    }
+  },
   "repository": {
     "type": "git",
     "url": "http://github.com/qix-/node-smart-pipe.git"

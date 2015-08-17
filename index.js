@@ -4,7 +4,8 @@ var os = require('os');
 var tmp = require('tmp');
 var fs = require('fs');
 
-var isWindows = os.platform() === 'win32';
+var platform = os.platform();
+var isWindows = platform === 'win32';
 tmp.setGracefulCleanup();
 
 module.exports = function smartPipe(buffer, opts) {
@@ -23,7 +24,8 @@ module.exports = function smartPipe(buffer, opts) {
 		fs.closeSync(tmpFile.fd);
 	} else {
 		result.buffer = buffer;
-		result.file = opts.dash ? '-' : '/dev/stdin';
+		result.file = opts.dash ? '-' : platform === 'linux' ?
+			'/proc/self/fd/0' : '/dev/stdin';
 		result.clean = function () {};
 	}
 

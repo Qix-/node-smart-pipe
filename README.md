@@ -6,7 +6,6 @@ The following works cross-platform.
 
 ```javascript
 var smartPipe = require('smart-pipe');
-var smartPipe = require('./');
 var exec = require('child_process').execSync;
 
 var buffer = new Buffer([1, 2, 3, 4]);
