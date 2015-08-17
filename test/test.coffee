@@ -1,8 +1,14 @@
 os = require 'os'
 should = require 'should'
+path = require 'path'
+fs = require 'fs'
+{exec} = require 'child_process'
+{execSync} = require 'child_process'
 _require = require 'require-uncached'
 
-platform = os.platform()
+_platform = os.platform
+platform = _platform()
+typeCat = if platform is 'win32' then 'type' else 'cat'
 platformChecked = no
 os.platform = ->
   platformChecked = yes
@@ -58,3 +64,27 @@ checkClean = (plat)->
 checkClean 'darwin'
 checkClean 'linux'
 checkClean 'win32'
+
+it 'should execute cat/type correctly (sync)', ->
+  platform = _platform()
+  pipe = _require '../'
+  inputSource = fs.readFileSync path.resolve path.join __dirname,
+    '../package.json'
+  res = pipe inputSource
+  output = execSync "#{typeCat} #{res.file}",
+    input: res.buffer
+  res.clean()
+  (JSON.parse output).name.should.equal 'smart-pipe'
+
+it 'should execute cat/type correctly (async)', (done)->
+  platform = _platform()
+  pipe = _require '../'
+  inputSource = fs.readFileSync path.resolve path.join __dirname,
+    '../package.json'
+  res = pipe inputSource
+  proc = exec "#{typeCat} #{res.file}", (err, stdout, stderr)->
+    (JSON.parse stdout).name.should.equal 'smart-pipe'
+    res.clean()
+    done()
+  proc.stdin.write res.buffer
+  proc.stdin.end()
