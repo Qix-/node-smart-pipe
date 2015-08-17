@@ -1,0 +1,35 @@
+{
+  "name": "smart-pipe",
+  "description": "Consistent STDIN piping, cross platform",
+  "version": "0.1.0",
+  "author": "Qix (http://github.com/qix-)",
+  "keywords": [
+    "stdin",
+    "pipe",
+    "buffer",
+    "standard",
+    "in",
+    "input"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "pretest": "node_modules/.bin/xo",
+    "test": "node_modules/.bin/mocha --compilers coffee:coffee-script/register"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/qix-/node-smart-pipe.git"
+  },
+  "devDependencies": {
+    "coffee-script": "^1.9.3",
+    "coveralls": "^2.11.2",
+    "istanbul": "^0.3.17",
+    "mocha": "^2.2.5",
+    "require-uncached": "^1.0.2",
+    "should": "^7.0.1",
+    "xo": "^0.5.2"
+  },
+  "dependencies": {
+    "tmp": "0.0.27"
+  }
+}
