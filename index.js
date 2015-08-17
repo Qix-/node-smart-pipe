@@ -24,8 +24,11 @@ module.exports = function smartPipe(buffer, opts) {
 		fs.closeSync(tmpFile.fd);
 	} else {
 		result.buffer = buffer;
-		result.file = opts.dash ? '-' : platform === 'linux' ?
-			'/proc/self/fd/0' : '/dev/stdin';
+		result.file = opts.dash
+			? '-'
+			: platform === 'linux'
+				? '/proc/self/fd/0'
+				: '/dev/stdin';
 		result.clean = function () {};
 	}
 
