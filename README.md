@@ -1,4 +1,4 @@
-# Skeleton [![Travis-CI.org Build Status](https://img.shields.io/travis/Qix-/node-smart-pipe.svg?style=flat-square)](https://travis-ci.org/Qix-/node-smart-pipe) [![Coveralls.io Coverage Rating](https://img.shields.io/coveralls/Qix-/node-smart-pipe.svg?style=flat-square)](https://coveralls.io/r/Qix-/node-smart-pipe)
+# node-smart-pipe [![Travis-CI.org Build Status](https://img.shields.io/travis/Qix-/node-smart-pipe.svg?style=flat-square)](https://travis-ci.org/Qix-/node-smart-pipe) [![Coveralls.io Coverage Rating](https://img.shields.io/coveralls/Qix-/node-smart-pipe.svg?style=flat-square)](https://coveralls.io/r/Qix-/node-smart-pipe)
 Wrap STDIN buffers for programs that don't directly support stdin
 
 ## Example
