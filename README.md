@@ -2,7 +2,27 @@
 Wrap STDIN buffers for programs that don't directly support stdin
 
 ## Example
-The following works cross-platform.
+The following work cross-platform.
+
+#### Asynchronous
+```javascript
+var smartPipe = require('smart-pipe');
+var exec = require('child_process').exec;
+
+var buffer = new Buffer([1, 2, 3, 4]);
+var piped = smartPipe(buffer);
+
+var cmd = 'xxd ' + piped.file;
+
+var proc = exec(cmd, function(err, stdout, stderr) {
+	console.log(stdout);
+});
+
+proc.stdin.write(piped.buffer);
+proc.stdin.end();
+```
+
+#### Synchronous
 
 ```javascript
 var smartPipe = require('smart-pipe');
