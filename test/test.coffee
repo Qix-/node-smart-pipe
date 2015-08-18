@@ -18,11 +18,11 @@ it 'should check the platform', ->
   pipe = _require '../'
   platformChecked.should.equal yes
 
-it 'should specify /proc/self/fd/0 on linux', ->
+it 'should specify /dev/fd/0,nofork on linux', ->
   platform = 'linux'
   pipe = _require '../'
   res = pipe null
-  res.file.should.equal '/proc/self/fd/0'
+  res.file.should.equal '/dev/fd/0,nofork'
 
 it 'should specify /dev/stdin on macosx', ->
   platform = 'darwin'
@@ -71,7 +71,7 @@ it 'should execute cat/type correctly (sync)', ->
   inputSource = fs.readFileSync path.resolve path.join __dirname,
     '../package.json'
   res = pipe inputSource
-  output = execSync "#{typeCat} #{res.file}",
+  output = execSync "#{res.command} #{typeCat} #{res.file}",
     input: res.buffer
   res.clean()
   (JSON.parse output).name.should.equal 'smart-pipe'
@@ -82,7 +82,7 @@ it 'should execute cat/type correctly (async)', (done)->
   inputSource = fs.readFileSync path.resolve path.join __dirname,
     '../package.json'
   res = pipe inputSource
-  proc = exec "#{typeCat} #{res.file}", (err, stdout, stderr)->
+  proc = exec "#{res.command} #{typeCat} #{res.file}", (err, stdout, stderr)->
     (JSON.parse stdout).name.should.equal 'smart-pipe'
     res.clean()
     done()

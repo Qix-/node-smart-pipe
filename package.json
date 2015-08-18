@@ -13,6 +13,7 @@
   ],
   "license": "MIT",
   "scripts": {
+    "install": "node build_check.js",
     "pretest": "node_modules/.bin/xo",
     "test": "node_modules/.bin/mocha --compilers coffee:coffee-script/register"
   },
