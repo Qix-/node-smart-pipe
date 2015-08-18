@@ -1,7 +1,7 @@
 {
   "name": "smart-pipe",
   "description": "Consistent STDIN piping, cross platform",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "author": "Qix (http://github.com/qix-)",
   "keywords": [
     "stdin",
