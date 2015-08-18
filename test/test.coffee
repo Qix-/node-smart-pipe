@@ -65,16 +65,17 @@ checkClean 'darwin'
 checkClean 'linux'
 checkClean 'win32'
 
-it 'should execute cat/type correctly (sync)', ->
-  platform = _platform()
-  pipe = _require '../'
-  inputSource = fs.readFileSync path.resolve path.join __dirname,
-    '../package.json'
-  res = pipe inputSource
-  output = execSync "#{res.command} #{typeCat} #{res.file}",
-    input: res.buffer
-  res.clean()
-  (JSON.parse output).name.should.equal 'smart-pipe'
+if execSync # node 0.10 doesn't have execSync for some reason.
+  it 'should execute cat/type correctly (sync)', ->
+    platform = _platform()
+    pipe = _require '../'
+    inputSource = fs.readFileSync path.resolve path.join __dirname,
+      '../package.json'
+    res = pipe inputSource
+    output = execSync "#{res.command} #{typeCat} #{res.file}",
+      input: res.buffer
+    res.clean()
+    (JSON.parse output).name.should.equal 'smart-pipe'
 
 it 'should execute cat/type correctly (async)', (done)->
   platform = _platform()
