@@ -1,4 +1,4 @@
 *.sw[a-p]
 /node_modules/
-npm-ignore.log
+npm-debug.log
 /coverage/
