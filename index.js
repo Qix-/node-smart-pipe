@@ -26,9 +26,7 @@ module.exports = function smartPipe(buffer, opts) {
 		result.buffer = buffer;
 		result.file = opts.dash
 			? '-'
-			: platform === 'linux'
-				? '/proc/self/fd/0'
-				: '/dev/stdin';
+			: '/dev/stdin';
 		result.clean = function () {};
 	}
 

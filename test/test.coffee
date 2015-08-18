@@ -18,11 +18,11 @@ it 'should check the platform', ->
   pipe = _require '../'
   platformChecked.should.equal yes
 
-it 'should specify /proc/self/fd/0 on linux', ->
+it 'should specify /dev/stdin on linux', ->
   platform = 'linux'
   pipe = _require '../'
   res = pipe null
-  res.file.should.equal '/proc/self/fd/0'
+  res.file.should.equal '/dev/stdin'
 
 it 'should specify /dev/stdin on macosx', ->
   platform = 'darwin'
